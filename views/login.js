@@ -2,18 +2,20 @@ import LogoSenac from '../assets/senac-logo.png'
 import * as React from 'react';
 import { Button, Text, StyleSheet, TextInput, View, Image } from 'react-native';
 import * as SecureStore from 'expo-secure-store'
+import { useNavigation } from 'expo-router';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({navigation}) {
+    
     const [dataLogin, setDataLogin] = React.useState({
-        username: '',
-        password: ''
+        email: '',
+        senha: ''
     })
 
     function updateUsername(value) {
         const newDataLogin = {
             ...dataLogin
         }
-        newDataLogin.username = value
+        newDataLogin.email = value
         setDataLogin(newDataLogin)
     }
 
@@ -21,13 +23,12 @@ export default function LoginScreen({ navigation }) {
         const newDataLogin = {
             ...dataLogin
         }
-        newDataLogin.password = value
+        newDataLogin.senha = value
         setDataLogin(newDataLogin)
     }
 
     async function logar() {
         try {
-            // console.log('entrou em logar')
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             const raw = JSON.stringify(dataLogin)
@@ -36,12 +37,12 @@ export default function LoginScreen({ navigation }) {
                 headers: myHeaders,
                 body: raw
               };
-            //   console.log('requestOptions', requestOptions)
-            const resp = await fetch("http://10.0.2.2:3000/login"
+            const resp = await fetch("http://172.21.17.100:3000/login"
             , requestOptions)
             const bodyResp = await resp.json()
-            console.log('resp',bodyResp)
-            console.log(bodyResp)
+            const token = bodyResp.token
+            SecureStore.setItem('bearer', token)
+            navigation.navigate('Home')
         } catch (error) {
             console.warn(error)
         }
@@ -51,8 +52,22 @@ export default function LoginScreen({ navigation }) {
         <View style={styles.container}>
             <Image width={100} height={200} style={{ flex: 1, objectFit: 'contain' }} source={LogoSenac} />
             <Text style={styles.title}>Login</Text>
-            <TextInput value={dataLogin.username} onChangeText={updateUsername} style={styles.input} placeholder='Nome' />
-            <TextInput value={dataLogin.password} onChangeText={updatePassword} style={styles.input} placeholder='Senha' keyboardType='numeric' />
+            <TextInput 
+                value={dataLogin.username} 
+                onChangeText={updateUsername} 
+                style={styles.input} 
+                placeholder='Email' 
+                keyboardType='email-address' 
+            />
+            <TextInput 
+                value={dataLogin.password} 
+                onChangeText={updatePassword} 
+                style={styles.input} 
+                placeholder='Senha' 
+                secureTextEntry={true} 
+                keyboardType='default' 
+                textContentType='password' 
+            />
             <Button style={styles.button}
                 title="Logar"
                 onPress={() => logar()}
