@@ -4,7 +4,8 @@ import { Button, Text, StyleSheet, TextInput, View, Image } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from '@react-navigation/native'; // Importe useNavigation
 
-export default function HomeScreen({ navigation }) {
+export default function ConsultaScreen({ navigation }) {
+  
   const [dataConsulta, setDataConsulta] = React.useState({
     datahora: '',
     paciente: '',
@@ -35,7 +36,7 @@ export default function HomeScreen({ navigation }) {
     setDataConsulta(newDataConsulta);
   }
 
-  async function consultar() {
+  async function Consultar() {
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
@@ -46,7 +47,7 @@ export default function HomeScreen({ navigation }) {
         body: raw,
       };
       const resp = await fetch(
-        'http://172.21.17.100:3000/Home',
+        'http://172.21.17.100:3000/Consulta',
         requestOptions
       );
       const bodyResp = await resp.json();
@@ -95,7 +96,7 @@ export default function HomeScreen({ navigation }) {
       <Button
         style={styles.button}
         title="Consultar"
-        onPress={() => consultar()}
+        onPress={() => Consultar()}
       />
     </View>
   );
