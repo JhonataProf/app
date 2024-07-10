@@ -1,45 +1,23 @@
 import LogoSenac from '../assets/senac-logo.png';
 import * as React from 'react';
-import { Button, Text, StyleSheet, TextInput, View, Image } from 'react-native';
+import { Button, Text, StyleSheet, View, Image } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { useNavigation } from '@react-navigation/native'; // Importe useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen({ navigation }) {
-  const [dataConsulta, setDataConsulta] = React.useState({
-    datahora: '',
+  const [dataInicio, setDataInicio] = React.useState({
+    inicio: '',
+    agendamentos: '',
     paciente: '',
-    podologo: '',
+    perfil: '',
+    profissional: '',
   });
 
-  function updateDatetime(value) {
-    const newDataConsulta = {
-      ...dataConsulta,
-    };
-    newDataConsulta.datahora = value;
-    setDataConsulta(newDataConsulta);
-  }
-
-  function updatePaciente(value) {
-    const newDataConsulta = {
-      ...dataConsulta,
-    };
-    newDataConsulta.paciente = value;
-    setDataConsulta(newDataConsulta);
-  }
-
-  function updatePodologo(value) {
-    const newDataConsulta = {
-      ...dataConsulta,
-    };
-    newDataConsulta.podologo = value;
-    setDataConsulta(newDataConsulta);
-  }
-
-  async function consultar() {
+  async function inicio() {
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
-      const raw = JSON.stringify(dataConsulta);
+      const raw = JSON.stringify(dataInicio);
       const requestOptions = {
         method: 'POST',
         headers: myHeaders,
@@ -52,7 +30,7 @@ export default function HomeScreen({ navigation }) {
       const bodyResp = await resp.json();
       const token = bodyResp.token;
       SecureStore.setItem('bearer', token);
-      navigation.navigate('Consulta');
+      navigation.navigate('Inicio');
     } catch (error) {
       console.warn(error);
     }
@@ -66,36 +44,31 @@ export default function HomeScreen({ navigation }) {
         style={{ flex: 1, objectFit: 'contain' }}
         source={LogoSenac}
       />
-      <Text style={styles.title}>Consulta</Text>
-      <TextInput
-        value={dataConsulta.datahora}
-        onChangeText={updateDatetime}
-        style={styles.input}
-        placeholder="Data e Hora"
-        keyboardType="date-time"
-      />
-      <TextInput
-        value={dataConsulta.paciente}
-        onChangeText={updatePaciente}
-        style={styles.input}
-        placeholder="Paciente"
-        secureTextEntry={true}
-        keyboardType="default"
-        textContentType="paciente"
-      />
-      <TextInput
-        value={dataConsulta.podologo}
-        onChangeText={updatePodologo}
-        style={styles.input}
-        placeholder="Podologo"
-        secureTextEntry={true}
-        keyboardType="default"
-        textContentType="podologo"
+      <Text style={styles.title}>Home</Text>
+      <Button
+        style={styles.button}
+        title="Início"
+        onPress={() => inicio()}
       />
       <Button
         style={styles.button}
-        title="Consultar"
-        onPress={() => consultar()}
+        title="Agendamentos"
+        onPress={() => inicio()}
+      />
+      <Button
+        style={styles.button}
+        title="Paciente"
+        onPress={() => inicio()}
+      />
+      <Button
+        style={styles.button}
+        title="Perfil"
+        onPress={() => inicio()}
+      />
+      <Button
+        style={styles.button}
+        title="Profissional"
+        onPress={() => inicio()}
       />
     </View>
   );
@@ -111,23 +84,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 60,
-  },
-  input: {
-    flex: 1,
-    fontSize: 20,
-    width: '100%',
-    maxHeight: 50,
-    textAlign: 'center',
-    flexWrap: 'nowrap',
-    borderColor: '#000',
-    borderRadius: 40,
-    borderWidth: 1,
     marginBottom: 20,
   },
   button: {
     flex: 1,
     fontSize: 20,
-    width: 1300,
-    display: 'flex',
+    width: '100%',
+    marginVertical: 10,
   },
 });
