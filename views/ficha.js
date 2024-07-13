@@ -185,217 +185,217 @@ export default function FichaScreen({ navigation }) {
         title="Cep"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Data de Nascimento"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Estado Civil"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Telefone"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Telefone para recado"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Profissão"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Posição em qual trabalha:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Estilista?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Há quanto tempo? "
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Tabagista?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Há quanto tempo?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Tipo de calçado que faz mais uso:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="N.º do calçado:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Tipo de meia que faz mais uso:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Pratica algum esporte?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Habitos alimentares:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Toma algum medicamento de uso contínuo?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Estatura:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Peso:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="P.A"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Glicemina:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Tipagem sanguínea:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Doenças pré-existentes:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Já fez algum tratamento podológico:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Já fez algum cirurgia nos membros inferiores:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Possui alguma alergia:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Gestante:"
         onPress={() => anamense()}
       />
-            <Button
+        <Button
         style={styles.button}
         title="Lactante:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Varizes:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Amputações:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Quais?"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Lactante:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Especificando sua dor de 1 a 10:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Portador de pinos ou marcapasso:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Perfusão:"
         onPress={() => anamense()}
       />
-                  <Button
+        <Button
         style={styles.button}
         title="Digito de pressão"
         onPress={() => anamense()}
       />
-                        <Button
+        <Button
         style={styles.button}
         title="Formato das unhas:"
         onPress={() => anamense()}
       />
-                        <Button
+        <Button
         style={styles.button}
         title="Formato dos pés:"
         onPress={() => anamense()}
       />
-                              <Button
+        <Button
         style={styles.button}
         title="Teste com monofila mento:"
         onPress={() => anamense()}
