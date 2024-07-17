@@ -1,10 +1,10 @@
 import LogoSenac from '../assets/senac-logo.png';
 import * as React from 'react';
-import { Button, Text, StyleSheet, View, Image } from 'react-native';
+import { Button, Text, StyleSheet, TextInput, View, Image, ScrollView } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from 'expo-router';
 
-export default function FichaScreen({ navigation }) {
+export default function AnamneseScreen({ navigation }) {
   const [dataAnamnese, setDataAnamnese] = React.useState({
     numero: '',
     nome: '',
@@ -128,7 +128,14 @@ export default function FichaScreen({ navigation }) {
     },
   });
 
-  async function anamnese() {
+  function updateField(name, value) {
+    setDataAnamnese({
+      ...dataAnamnese,
+      [name]: value,
+    });
+  }
+
+  async function logar() {
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
@@ -138,270 +145,356 @@ export default function FichaScreen({ navigation }) {
         headers: myHeaders,
         body: raw,
       };
-      const resp = await fetch(
-        'http://172.21.17.100:3000/Home',
-        requestOptions
-      );
+      const resp = await fetch('http://172.21.17.100:3000/anamnese', requestOptions);
       const bodyResp = await resp.json();
       const token = bodyResp.token;
-      SecureStore.setItem('bearer', token);
-      navigation.navigate('Anamnese');
+      SecureStore.setItemAsync('bearer', token);
+      navigation.navigate('Home');
     } catch (error) {
       console.warn(error);
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Image
-        width={100}
-        height={200}
-        style={{ flex: 1, objectFit: 'contain' }}
-        source={LogoSenac}
+    <ScrollView style={styles.container}>
+      <Image width={100} height={200} style={{ flex: 1, resizeMode: 'contain' }} source={LogoSenac} />
+      <Text style={styles.title}>Anamnese</Text>
+      <TextInput
+        value={dataAnamnese.numero}
+        onChangeText={(value) => updateField('numero', value)}
+        style={styles.input}
+        placeholder='Número'
       />
-      <Text style={styles.title}>Consulta</Text>
+      <TextInput
+        value={dataAnamnese.nome}
+        onChangeText={(value) => updateField('nome', value)}
+        style={styles.input}
+        placeholder='Nome'
+      />
+      <TextInput
+        value={dataAnamnese.endereco}
+        onChangeText={(value) => updateField('endereco', value)}
+        style={styles.input}
+        placeholder='Endereço'
+      />
+      <TextInput
+        value={dataAnamnese.num}
+        onChangeText={(value) => updateField('num', value)}
+        style={styles.input}
+        placeholder='Número'
+      />
+      <TextInput
+        value={dataAnamnese.cidade}
+        onChangeText={(value) => updateField('cidade', value)}
+        style={styles.input}
+        placeholder='Cidade'
+      />
+      <TextInput
+        value={dataAnamnese.cep}
+        onChangeText={(value) => updateField('cep', value)}
+        style={styles.input}
+        placeholder='CEP'
+      />
+      <TextInput
+        value={dataAnamnese.dataNascimento}
+        onChangeText={(value) => updateField('dataNascimento', value)}
+        style={styles.input}
+        placeholder='Data de Nascimento'
+      />
+      <TextInput
+        value={dataAnamnese.estadoCivil.solteiro ? 'Solteiro' : dataAnamnese.estadoCivil.casado ? 'Casado' : dataAnamnese.estadoCivil.viuvo ? 'Viúvo' : dataAnamnese.estadoCivil.demasiado ? 'Demasiado' : ''}
+        onChangeText={(value) => updateField('estadoCivil', { ...dataAnamnese.estadoCivil, solteiro: value === 'Solteiro', casado: value === 'Casado', viuvo: value === 'Viúvo', demasiado: value === 'Demasiado' })}
+        style={styles.input}
+        placeholder='Estado Civil'
+      />
+      <TextInput
+        value={dataAnamnese.telefone}
+        onChangeText={(value) => updateField('telefone', value)}
+        style={styles.input}
+        placeholder='Telefone'
+      />
+      <TextInput
+        value={dataAnamnese.telefoneRecado}
+        onChangeText={(value) => updateField('telefoneRecado', value)}
+        style={styles.input}
+        placeholder='Telefone para Recado'
+      />
+      <TextInput
+        value={dataAnamnese.profissao}
+        onChangeText={(value) => updateField('profissao', value)}
+        style={styles.input}
+        placeholder='Profissão'
+      />
+      <TextInput
+        value={dataAnamnese.posicaoTrabalho.emPe ? 'Em Pé' : dataAnamnese.posicaoTrabalho.sentado ? 'Sentado' : dataAnamnese.posicaoTrabalho.andando ? 'Andando' : ''}
+        onChangeText={(value) => updateField('posicaoTrabalho', { ...dataAnamnese.posicaoTrabalho, emPe: value === 'Em Pé', sentado: value === 'Sentado', andando: value === 'Andando' })}
+        style={styles.input}
+        placeholder='Posição de Trabalho'
+      />
+      <TextInput
+        value={dataAnamnese.estilista.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('estilista', { ...dataAnamnese.estilista, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Estilista'
+      />
+      <TextInput
+        value={dataAnamnese.estilista.tempo}
+        onChangeText={(value) => updateField('estilista', { ...dataAnamnese.estilista, tempo: value })}
+        style={styles.input}
+        placeholder='Tempo de Estilista'
+      />
+      <TextInput
+        value={dataAnamnese.tabagista.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('tabagista', { ...dataAnamnese.tabagista, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Tabagista'
+      />
+      <TextInput
+        value={dataAnamnese.tabagista.tempo}
+        onChangeText={(value) => updateField('tabagista', { ...dataAnamnese.tabagista, tempo: value })}
+        style={styles.input}
+        placeholder='Tempo de Tabagismo'
+      />
+      <TextInput
+        value={dataAnamnese.tipoCalcado.aberto ? 'Aberto' : 'Fechado'}
+        onChangeText={(value) => updateField('tipoCalcado', { ...dataAnamnese.tipoCalcado, aberto: value === 'Aberto', fechado: value === 'Fechado' })}
+        style={styles.input}
+        placeholder='Tipo de Calçado'
+      />
+      <TextInput
+        value={dataAnamnese.tipoCalcado.numero}
+        onChangeText={(value) => updateField('tipoCalcado', { ...dataAnamnese.tipoCalcado, numero: value })}
+        style={styles.input}
+        placeholder='Número do Calçado'
+      />
+      <TextInput
+        value={dataAnamnese.tipoMeia.social ? 'Social' : dataAnamnese.tipoMeia.esportiva ? 'Esportiva' : dataAnamnese.tipoMeia.algodao ? 'Algodão' : ''}
+        onChangeText={(value) => updateField('tipoMeia', { ...dataAnamnese.tipoMeia, social: value === 'Social', esportiva: value === 'Esportiva', algodao: value === 'Algodão' })}
+        style={styles.input}
+        placeholder='Tipo de Meia'
+      />
+      <TextInput
+        value={dataAnamnese.praticaEsporte.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('praticaEsporte', { ...dataAnamnese.praticaEsporte, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Pratica Esporte'
+      />
+      <TextInput
+        value={dataAnamnese.praticaEsporte.qual}
+        onChangeText={(value) => updateField('praticaEsporte', { ...dataAnamnese.praticaEsporte, qual: value })}
+        style={styles.input}
+        placeholder='Qual esporte'
+      />
+      <TextInput
+        value={dataAnamnese.habitosAlimentares}
+        onChangeText={(value) => updateField('habitosAlimentares', value)}
+        style={styles.input}
+        placeholder='Hábitos Alimentares'
+      />
+      <TextInput
+        value={dataAnamnese.medicamentos.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('medicamentos', { ...dataAnamnese.medicamentos, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Usa Medicamentos'
+      />
+      <TextInput
+        value={dataAnamnese.medicamentos.quais}
+        onChangeText={(value) => updateField('medicamentos', { ...dataAnamnese.medicamentos, quais: value })}
+        style={styles.input}
+        placeholder='Quais Medicamentos'
+      />
+      <TextInput
+        value={dataAnamnese.estatura}
+        onChangeText={(value) => updateField('estatura', value)}
+        style={styles.input}
+        placeholder='Estatura'
+      />
+      <TextInput
+        value={dataAnamnese.peso}
+        onChangeText={(value) => updateField('peso', value)}
+        style={styles.input}
+        placeholder='Peso'
+      />
+      <TextInput
+        value={dataAnamnese.pa}
+        onChangeText={(value) => updateField('pa', value)}
+        style={styles.input}
+        placeholder='PA'
+      />
+      <TextInput
+        value={dataAnamnese.glicemia}
+        onChangeText={(value) => updateField('glicemia', value)}
+        style={styles.input}
+        placeholder='Glicemia'
+      />
+      <TextInput
+        value={dataAnamnese.tipagemSanguinea}
+        onChangeText={(value) => updateField('tipagemSanguinea', value)}
+        style={styles.input}
+        placeholder='Tipagem Sanguínea'
+      />
+      <TextInput
+        value={dataAnamnese.doencasPreExistentes.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('doencasPreExistentes', { ...dataAnamnese.doencasPreExistentes, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Doenças Preexistentes'
+      />
+      <TextInput
+        value={dataAnamnese.doencasPreExistentes.quais}
+        onChangeText={(value) => updateField('doencasPreExistentes', { ...dataAnamnese.doencasPreExistentes, quais: value })}
+        style={styles.input}
+        placeholder='Quais Doenças'
+      />
+      <TextInput
+        value={dataAnamnese.tratamentoPodologico.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('tratamentoPodologico', { ...dataAnamnese.tratamentoPodologico, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Tratamento Podológico'
+      />
+      <TextInput
+        value={dataAnamnese.tratamentoPodologico.quais}
+        onChangeText={(value) => updateField('tratamentoPodologico', { ...dataAnamnese.tratamentoPodologico, quais: value })}
+        style={styles.input}
+        placeholder='Quais Tratamentos'
+      />
+      <TextInput
+        value={dataAnamnese.cirurgiaMembrosInferiores.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('cirurgiaMembrosInferiores', { ...dataAnamnese.cirurgiaMembrosInferiores, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Cirurgia Membros Inferiores'
+      />
+      <TextInput
+        value={dataAnamnese.cirurgiaMembrosInferiores.quais}
+        onChangeText={(value) => updateField('cirurgiaMembrosInferiores', { ...dataAnamnese.cirurgiaMembrosInferiores, quais: value })}
+        style={styles.input}
+        placeholder='Quais Cirurgias'
+      />
+      <TextInput
+        value={dataAnamnese.alergia.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('alergia', { ...dataAnamnese.alergia, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Alergias'
+      />
+      <TextInput
+        value={dataAnamnese.alergia.quais}
+        onChangeText={(value) => updateField('alergia', { ...dataAnamnese.alergia, quais: value })}
+        style={styles.input}
+        placeholder='Quais Alergias'
+      />
+      <TextInput
+        value={dataAnamnese.gestante.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('gestante', { ...dataAnamnese.gestante, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Gestante'
+      />
+      <TextInput
+        value={dataAnamnese.lactante.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('lactante', { ...dataAnamnese.lactante, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Lactante'
+      />
+      <TextInput
+        value={dataAnamnese.varizes.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('varizes', { ...dataAnamnese.varizes, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Varizes'
+      />
+      <TextInput
+        value={dataAnamnese.amputacoes.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('amputacoes', { ...dataAnamnese.amputacoes, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Amputações'
+      />
+      <TextInput
+        value={dataAnamnese.amputacoes.quais}
+        onChangeText={(value) => updateField('amputacoes', { ...dataAnamnese.amputacoes, quais: value })}
+        style={styles.input}
+        placeholder='Quais Amputações'
+      />
+      <TextInput
+        value={dataAnamnese.dor}
+        onChangeText={(value) => updateField('dor', value)}
+        style={styles.input}
+        placeholder='Dor'
+      />
+      <TextInput
+        value={dataAnamnese.pinosMarcapasso.sim ? 'Sim' : 'Não'}
+        onChangeText={(value) => updateField('pinosMarcapasso', { ...dataAnamnese.pinosMarcapasso, sim: value === 'Sim', nao: value === 'Não' })}
+        style={styles.input}
+        placeholder='Pinos ou Marcapasso'
+      />
+      <TextInput
+        value={dataAnamnese.pinosMarcapasso.quais}
+        onChangeText={(value) => updateField('pinosMarcapasso', { ...dataAnamnese.pinosMarcapasso, quais: value })}
+        style={styles.input}
+        placeholder='Quais Pinos ou Marcapasso'
+      />
+      <TextInput
+        value={dataAnamnese.perfusao.pd}
+        onChangeText={(value) => updateField('perfusao', { ...dataAnamnese.perfusao, pd: value })}
+        style={styles.input}
+        placeholder='Perfusão PD'
+      />
+      <TextInput
+        value={dataAnamnese.perfusao.pe}
+        onChangeText={(value) => updateField('perfusao', { ...dataAnamnese.perfusao, pe: value })}
+        style={styles.input}
+        placeholder='Perfusão PE'
+      />
+      <TextInput
+        value={dataAnamnese.digitoPressao.pd}
+        onChangeText={(value) => updateField('digitoPressao', { ...dataAnamnese.digitoPressao, pd: value })}
+        style={styles.input}
+        placeholder='Dígito Pressão PD'
+      />
+      <TextInput
+        value={dataAnamnese.digitoPressao.pe}
+        onChangeText={(value) => updateField('digitoPressao', { ...dataAnamnese.digitoPressao, pe: value })}
+        style={styles.input}
+        placeholder='Dígito Pressão PE'
+      />
+      <TextInput
+        value={dataAnamnese.formatoUnhas.pd}
+        onChangeText={(value) => updateField('formatoUnhas', { ...dataAnamnese.formatoUnhas, pd: value })}
+        style={styles.input}
+        placeholder='Formato das Unhas PD'
+      />
+      <TextInput
+        value={dataAnamnese.formatoUnhas.pe}
+        onChangeText={(value) => updateField('formatoUnhas', { ...dataAnamnese.formatoUnhas, pe: value })}
+        style={styles.input}
+        placeholder='Formato das Unhas PE'
+      />
+      <TextInput
+        value={dataAnamnese.formatoPes.pd}
+        onChangeText={(value) => updateField('formatoPes', { ...dataAnamnese.formatoPes, pd: value })}
+        style={styles.input}
+        placeholder='Formato dos Pés PD'
+      />
+      <TextInput
+        value={dataAnamnese.formatoPes.pe}
+        onChangeText={(value) => updateField('formatoPes', { ...dataAnamnese.formatoPes, pe: value })}
+        style={styles.input}
+        placeholder='Formato dos Pés PE'
+      />
+      <TextInput
+        value={dataAnamnese.testeMonofilamento.pd.cs ? 'CS' : 'SS'}
+        onChangeText={(value) => updateField('testeMonofilamento', { ...dataAnamnese.testeMonofilamento, pd: { cs: value === 'CS', ss: value === 'SS' } })}
+        style={styles.input}
+        placeholder='Teste Monofilamento PD'
+      />
+      <TextInput
+        value={dataAnamnese.testeMonofilamento.pe.cs ? 'CS' : 'SS'}
+        onChangeText={(value) => updateField('testeMonofilamento', { ...dataAnamnese.testeMonofilamento, pe: { cs: value === 'CS', ss: value === 'SS' } })}
+        style={styles.input}
+        placeholder='Teste Monofilamento PE'
+      />
       <Button
         style={styles.button}
-        title="Ficha de Anamnese"
-        onPress={() => anamnese()}
+        title="Logar"
+        onPress={() => logar()}
       />
-      <Button
-        style={styles.button}
-        title="Ficha N.º"
-        onPress={() => anamnese()}
-      />
-      <Button
-        style={styles.button}
-        title="Nome"
-        onPress={() => anamnese()}
-      />
-      <Button
-        style={styles.button}
-        title="Endereço"
-        onPress={() => anamnese()}
-      />
-      <Button
-        style={styles.button}
-        title="Cep"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Data de Nascimento"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Estado Civil"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Telefone"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Telefone para recado"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Profissão"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Posição em qual trabalha:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Estilista?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Há quanto tempo? "
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Tabagista?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Há quanto tempo?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Tipo de calçado que faz mais uso:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="N.º do calçado:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Tipo de meia que faz mais uso:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Pratica algum esporte?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Habitos alimentares:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Toma algum medicamento de uso contínuo?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Estatura:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Peso:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="P.A"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Glicemina:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Tipagem sanguínea:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Doenças pré-existentes:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Já fez algum tratamento podológico:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Já fez algum cirurgia nos membros inferiores:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Possui alguma alergia:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Gestante:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Lactante:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Varizes:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Amputações:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Quais?"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Lactante:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Especificando sua dor de 1 a 10:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Portador de pinos ou marcapasso:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Perfusão:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Digito de pressão"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Formato das unhas:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Formato dos pés:"
-        onPress={() => anamnese()}
-      />
-        <Button
-        style={styles.button}
-        title="Teste com monofila mento:"
-        onPress={() => anamnese()}
-      />
-      
-    </View>
+    </ScrollView>
   );
 }
 
