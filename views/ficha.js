@@ -181,7 +181,7 @@ export default function AnamneseScreen({ navigation }) {
         value={dataAnamnese.num}
         onChangeText={(value) => updateField('num', value)}
         style={styles.input}
-        placeholder='Número'
+        placeholder='N.º'
       />
       <TextInput
         value={dataAnamnese.cidade}
