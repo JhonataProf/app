@@ -5,135 +5,346 @@ import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from 'expo-router';
 
 export default function AnamneseScreen({ navigation }) {
+  
   const [dataAnamnese, setDataAnamnese] = React.useState({
-    numero: '',
-    nome: '',
-    endereco: '',
-    num: '',
-    cidade: '',
-    cep: '',
-    dataNascimento: '',
-    estadoCivil: {
-      solteiro: false,
-      casado: false,
-      viuvo: false,
-      demasiado: false,
-    },
-    telefone: '',
-    telefoneRecado: '',
-    profissao: '',
-    posicaoTrabalho: {
-      emPe: false,
-      sentado: false,
-      andando: false,
-    },
-    estilista: {
-      sim: false,
-      nao: false,
-      tempo: '',
-    },
-    tabagista: {
-      sim: false,
-      nao: false,
-      tempo: '',
-    },
-    tipoCalcado: {
-      aberto: false,
-      fechado: false,
       numero: '',
-    },
-    tipoMeia: {
-      social: false,
-      esportiva: false,
-      algodao: false,
-    },
-    praticaEsporte: {
-      sim: false,
-      nao: false,
-      qual: '',
-    },
-    habitosAlimentares: '',
-    medicamentos: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    estatura: '',
-    peso: '',
-    pa: '',
-    glicemia: '',
-    tipagemSanguinea: '',
-    doencasPreExistentes: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    tratamentoPodologico: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    cirurgiaMembrosInferiores: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    alergia: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    gestante: {
-      sim: false,
-      nao: false,
-    },
-    lactante: {
-      sim: false,
-      nao: false,
-    },
-    varizes: {
-      sim: false,
-      nao: false,
-    },
-    amputacoes: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    dor: '',
-    pinosMarcapasso: {
-      sim: false,
-      nao: false,
-      quais: '',
-    },
-    perfusao: {
-      pd: '',
-      pe: '',
-    },
-    digitoPressao: {
-      pd: '',
-      pe: '',
-    },
-    formatoUnhas: {
-      pd: '',
-      pe: '',
-    },
-    formatoPes: {
-      pd: '',
-      pe: '',
-    },
-    testeMonofilamento: {
-      pd: { cs: false, ss: false },
-      pe: { cs: false, ss: false },
-    },
+      nome: '',
+      endereco: '',
+      num: '',
+      cidade: '',
+      cep: '',
+      dataNascimento: '',
+      estadoCivil: {
+        solteiro: false,
+        casado: false,
+        viuvo: false,
+        demasiado: false,
+      },
+      telefone: '',
+      telefoneRecado: '',
+      profissao: '',
+      posicaoTrabalho: {
+        emPe: false,
+        sentado: false,
+        andando: false,
+      },
+      estilista: {
+        sim: false,
+        nao: false,
+        tempo: '',
+      },
+      tabagista: {
+        sim: false,
+        nao: false,
+        tempo: '',
+      },
+      tipoCalcado: {
+        aberto: false,
+        fechado: false,
+        numero: '',
+      },
+      tipoMeia: {
+        social: false,
+        esportiva: false,
+        algodao: false,
+      },
+      praticaEsporte: {
+        sim: false,
+        nao: false,
+        qual: '',
+      },
+      habitosAlimentares: '',
+      medicamentos: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      estatura: '',
+      peso: '',
+      pa: '',
+      glicemia: '',
+      tipagemSanguinea: '',
+      doencasPreExistentes: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      tratamentoPodologico: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      cirurgiaMembrosInferiores: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      alergia: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      gestante: {
+        sim: false,
+        nao: false,
+      },
+      lactante: {
+        sim: false,
+        nao: false,
+      },
+      varizes: {
+        sim: false,
+        nao: false,
+      },
+      amputacoes: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      dor: '',
+      pinosMarcapasso: {
+        sim: false,
+        nao: false,
+        quais: '',
+      },
+      perfusao: {
+        pd: '',
+        pe: '',
+      },
+      digitoPressao: {
+        pd: '',
+        pe: '',
+      },
+      formatoUnhas: {
+        pd: '',
+        pe: '',
+      },
+      formatoPes: {
+        pd: '',
+        pe: '',
+      },
+      testeMonofilamento: {
+        pd: { cs: false, ss: false },
+        pe: { cs: false, ss: false },
+      },
   });
 
-  function updateField(name, value) {
-    setDataAnamnese({
-      ...dataAnamnese,
-      [name]: value,
-    });
+  function updateNumber(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.numero = value
+    setDataAnamnese(newDataAnamnese)
   }
+
+  function updateName(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.nome = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateAddress(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.endereco = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateNumber(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.numero = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateCity(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.cidade = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateZip(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.cep = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatedatebirth(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.datanascimento = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateMaritalstatus(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.estadoCivil = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateTelephone(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.telefone = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatePhonemessage(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.telefone = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateProfession(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.profissao = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateJobposition(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.posicaoTrabalho = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateStylist(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.estilista = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateSmoker(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tabagista = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateTypefootwear(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipocalcado = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateShoenumber(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.numerocalcado = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateTypeSock(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipomeia = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatePracticessports(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.praticaesporte = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatewhatsportsdoyoupractice(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.praticaesporte = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateeatinghabits(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.habitosalimentares = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateMedicines(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.medicamentos = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatewhatmedicines(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.quaismedicamentos = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateStature(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.estatura = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateWeight(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.peso = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updatePA(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.pa = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodglucose(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.glicemia = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
 
   async function logar() {
     try {
@@ -161,79 +372,79 @@ export default function AnamneseScreen({ navigation }) {
       <Text style={styles.title}>Anamnese</Text>
       <TextInput
         value={dataAnamnese.numero}
-        onChangeText={(value) => updateField('numero', value)}
+        onChangeText={(value) => updateNumber('numero', value)}
         style={styles.input}
         placeholder='Número'
       />
       <TextInput
         value={dataAnamnese.nome}
-        onChangeText={(value) => updateField('nome', value)}
+        onChangeText={(value) => updateName('nome', value)}
         style={styles.input}
         placeholder='Nome'
       />
       <TextInput
         value={dataAnamnese.endereco}
-        onChangeText={(value) => updateField('endereco', value)}
+        onChangeText={(value) => updateAddress('endereco', value)}
         style={styles.input}
         placeholder='Endereço'
       />
       <TextInput
         value={dataAnamnese.num}
-        onChangeText={(value) => updateField('num', value)}
+        onChangeText={(value) => updateNumber('num', value)}
         style={styles.input}
         placeholder='N.º'
       />
       <TextInput
         value={dataAnamnese.cidade}
-        onChangeText={(value) => updateField('cidade', value)}
+        onChangeText={(value) => updateCity('cidade', value)}
         style={styles.input}
         placeholder='Cidade'
       />
       <TextInput
         value={dataAnamnese.cep}
-        onChangeText={(value) => updateField('cep', value)}
+        onChangeText={(value) => updateZip('cep', value)}
         style={styles.input}
         placeholder='CEP'
       />
       <TextInput
         value={dataAnamnese.dataNascimento}
-        onChangeText={(value) => updateField('dataNascimento', value)}
+        onChangeText={(value) => updatedatebirth('dataNascimento', value)}
         style={styles.input}
         placeholder='Data de Nascimento'
       />
       <TextInput
         value={dataAnamnese.estadoCivil.solteiro ? 'Solteiro' : dataAnamnese.estadoCivil.casado ? 'Casado' : dataAnamnese.estadoCivil.viuvo ? 'Viúvo' : dataAnamnese.estadoCivil.demasiado ? 'Demasiado' : ''}
-        onChangeText={(value) => updateField('estadoCivil', { ...dataAnamnese.estadoCivil, solteiro: value === 'Solteiro', casado: value === 'Casado', viuvo: value === 'Viúvo', demasiado: value === 'Demasiado' })}
+        onChangeText={(value) => updateMaritalstatus('estadoCivil', { ...dataAnamnese.estadoCivil, solteiro: value === 'Solteiro', casado: value === 'Casado', viuvo: value === 'Viúvo', demasiado: value === 'Demasiado' })}
         style={styles.input}
         placeholder='Estado Civil'
       />
       <TextInput
         value={dataAnamnese.telefone}
-        onChangeText={(value) => updateField('telefone', value)}
+        onChangeText={(value) => updateTelephone('telefone', value)}
         style={styles.input}
         placeholder='Telefone'
       />
       <TextInput
         value={dataAnamnese.telefoneRecado}
-        onChangeText={(value) => updateField('telefoneRecado', value)}
+        onChangeText={(value) => updatePhonemessage('telefoneRecado', value)}
         style={styles.input}
         placeholder='Telefone para Recado'
       />
       <TextInput
         value={dataAnamnese.profissao}
-        onChangeText={(value) => updateField('profissao', value)}
+        onChangeText={(value) => updateProfession('profissao', value)}
         style={styles.input}
         placeholder='Profissão'
       />
       <TextInput
         value={dataAnamnese.posicaoTrabalho.emPe ? 'Em Pé' : dataAnamnese.posicaoTrabalho.sentado ? 'Sentado' : dataAnamnese.posicaoTrabalho.andando ? 'Andando' : ''}
-        onChangeText={(value) => updateField('posicaoTrabalho', { ...dataAnamnese.posicaoTrabalho, emPe: value === 'Em Pé', sentado: value === 'Sentado', andando: value === 'Andando' })}
+        onChangeText={(value) => updateJobposition('posicaoTrabalho', { ...dataAnamnese.posicaoTrabalho, emPe: value === 'Em Pé', sentado: value === 'Sentado', andando: value === 'Andando' })}
         style={styles.input}
         placeholder='Posição de Trabalho'
       />
       <TextInput
         value={dataAnamnese.estilista.sim ? 'Sim' : 'Não'}
-        onChangeText={(value) => updateField('estilista', { ...dataAnamnese.estilista, sim: value === 'Sim', nao: value === 'Não' })}
+        onChangeText={(value) => updateStylist('estilista', { ...dataAnamnese.estilista, sim: value === 'Sim', nao: value === 'Não' })}
         style={styles.input}
         placeholder='Estilista'
       />
@@ -245,7 +456,7 @@ export default function AnamneseScreen({ navigation }) {
       />
       <TextInput
         value={dataAnamnese.tabagista.sim ? 'Sim' : 'Não'}
-        onChangeText={(value) => updateField('tabagista', { ...dataAnamnese.tabagista, sim: value === 'Sim', nao: value === 'Não' })}
+        onChangeText={(value) => updateSmoker('tabagista', { ...dataAnamnese.tabagista, sim: value === 'Sim', nao: value === 'Não' })}
         style={styles.input}
         placeholder='Tabagista'
       />
@@ -257,79 +468,79 @@ export default function AnamneseScreen({ navigation }) {
       />
       <TextInput
         value={dataAnamnese.tipoCalcado.aberto ? 'Aberto' : 'Fechado'}
-        onChangeText={(value) => updateField('tipoCalcado', { ...dataAnamnese.tipoCalcado, aberto: value === 'Aberto', fechado: value === 'Fechado' })}
+        onChangeText={(value) => updateTypefootwear('tipoCalcado', { ...dataAnamnese.tipoCalcado, aberto: value === 'Aberto', fechado: value === 'Fechado' })}
         style={styles.input}
         placeholder='Tipo de Calçado'
       />
       <TextInput
-        value={dataAnamnese.tipoCalcado.numero}
-        onChangeText={(value) => updateField('tipoCalcado', { ...dataAnamnese.tipoCalcado, numero: value })}
+        value={dataAnamnese.numerocalcado.numero}
+        onChangeText={(value) => updateShoenumber('tipoCalcado', { ...dataAnamnese.tipoCalcado, numero: value })}
         style={styles.input}
         placeholder='Número do Calçado'
       />
       <TextInput
         value={dataAnamnese.tipoMeia.social ? 'Social' : dataAnamnese.tipoMeia.esportiva ? 'Esportiva' : dataAnamnese.tipoMeia.algodao ? 'Algodão' : ''}
-        onChangeText={(value) => updateField('tipoMeia', { ...dataAnamnese.tipoMeia, social: value === 'Social', esportiva: value === 'Esportiva', algodao: value === 'Algodão' })}
+        onChangeText={(value) => updateTypeSock('tipoMeia', { ...dataAnamnese.tipoMeia, social: value === 'Social', esportiva: value === 'Esportiva', algodao: value === 'Algodão' })}
         style={styles.input}
         placeholder='Tipo de Meia'
       />
       <TextInput
         value={dataAnamnese.praticaEsporte.sim ? 'Sim' : 'Não'}
-        onChangeText={(value) => updateField('praticaEsporte', { ...dataAnamnese.praticaEsporte, sim: value === 'Sim', nao: value === 'Não' })}
+        onChangeText={(value) => updatePracticessports('praticaEsporte', { ...dataAnamnese.praticaEsporte, sim: value === 'Sim', nao: value === 'Não' })}
         style={styles.input}
-        placeholder='Pratica Esporte'
+        placeholder='Pratica Esporte?'
       />
       <TextInput
         value={dataAnamnese.praticaEsporte.qual}
-        onChangeText={(value) => updateField('praticaEsporte', { ...dataAnamnese.praticaEsporte, qual: value })}
+        onChangeText={(value) => updatewhatsportsdoyoupractice('praticaEsporte', { ...dataAnamnese.praticaEsporte, qual: value })}
         style={styles.input}
-        placeholder='Qual esporte'
+        placeholder='Qual esporte?'
       />
       <TextInput
         value={dataAnamnese.habitosAlimentares}
-        onChangeText={(value) => updateField('habitosAlimentares', value)}
+        onChangeText={(value) => updateeatinghabits('habitosAlimentares', value)}
         style={styles.input}
         placeholder='Hábitos Alimentares'
       />
       <TextInput
         value={dataAnamnese.medicamentos.sim ? 'Sim' : 'Não'}
-        onChangeText={(value) => updateField('medicamentos', { ...dataAnamnese.medicamentos, sim: value === 'Sim', nao: value === 'Não' })}
+        onChangeText={(value) => updateMedicines('medicamentos', { ...dataAnamnese.medicamentos, sim: value === 'Sim', nao: value === 'Não' })}
         style={styles.input}
-        placeholder='Usa Medicamentos'
+        placeholder='Usa Medicamentos?'
       />
       <TextInput
         value={dataAnamnese.medicamentos.quais}
-        onChangeText={(value) => updateField('medicamentos', { ...dataAnamnese.medicamentos, quais: value })}
+        onChangeText={(value) => updatewhatmedicines('medicamentos', { ...dataAnamnese.medicamentos, quais: value })}
         style={styles.input}
         placeholder='Quais Medicamentos'
       />
       <TextInput
         value={dataAnamnese.estatura}
-        onChangeText={(value) => updateField('estatura', value)}
+        onChangeText={(value) => updateStature('estatura', value)}
         style={styles.input}
         placeholder='Estatura'
       />
       <TextInput
         value={dataAnamnese.peso}
-        onChangeText={(value) => updateField('peso', value)}
+        onChangeText={(value) => updateWeight('peso', value)}
         style={styles.input}
         placeholder='Peso'
       />
       <TextInput
         value={dataAnamnese.pa}
-        onChangeText={(value) => updateField('pa', value)}
+        onChangeText={(value) => updatePA('pa', value)}
         style={styles.input}
         placeholder='PA'
       />
       <TextInput
         value={dataAnamnese.glicemia}
-        onChangeText={(value) => updateField('glicemia', value)}
+        onChangeText={(value) => updateBloodglucose('glicemia', value)}
         style={styles.input}
         placeholder='Glicemia'
       />
       <TextInput
         value={dataAnamnese.tipagemSanguinea}
-        onChangeText={(value) => updateField('tipagemSanguinea', value)}
+        onChangeText={(value) => updateBloodtyping('tipagemSanguinea', value)}
         style={styles.input}
         placeholder='Tipagem Sanguínea'
       />
