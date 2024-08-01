@@ -345,11 +345,19 @@ export default function AnamneseScreen({ navigation }) {
     setDataAnamnese(newDataAnamnese)
   }
 
-  function updateBloodtyping(value) {
+  function updatePreexistingdiseases(value) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.doencasPreExistentes = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function lowerlimbsurgery(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.cirurgiaMembrosInferiores = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -357,7 +365,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.cirurgiaMembrosInferiores = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -365,7 +373,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.gestante = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -373,7 +381,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.lactante = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -381,7 +389,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.varizes = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -389,7 +397,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.amputacoes = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -397,7 +405,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.dor = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -405,7 +413,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.pinosMarcapasso = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -413,7 +421,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.perfusao = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -421,7 +429,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.digitoPressao = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -429,7 +437,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.formatoUnhas = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -437,7 +445,7 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.formatoPes = value
     setDataAnamnese(newDataAnamnese)
   }
 
@@ -445,60 +453,9 @@ export default function AnamneseScreen({ navigation }) {
     const newDataAnamnese = {
         ...dataAnamnese
     }
-    newDataAnamnese.tipagemsanguinea = value
+    newDataAnamnese.testeMonofilamento = value
     setDataAnamnese(newDataAnamnese)
   }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  function updateBloodtyping(value) {
-    const newDataAnamnese = {
-        ...dataAnamnese
-    }
-    newDataAnamnese.tipagemsanguinea = value
-    setDataAnamnese(newDataAnamnese)
-  }
-
-  
-
 
   async function logar() {
     try {
@@ -700,7 +657,7 @@ export default function AnamneseScreen({ navigation }) {
       />
       <TextInput
         value={dataAnamnese.doencasPreExistentes.sim ? 'Sim' : 'Não'}
-        onChangeText={(value) => updateField('doencasPreExistentes', { ...dataAnamnese.doencasPreExistentes, sim: value === 'Sim', nao: value === 'Não' })}
+        onChangeText={(value) => updatePreexistingdiseases('doencasPreExistentes', { ...dataAnamnese.doencasPreExistentes, sim: value === 'Sim', nao: value === 'Não' })}
         style={styles.input}
         placeholder='Doenças Preexistentes'
       />
