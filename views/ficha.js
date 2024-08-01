@@ -345,6 +345,160 @@ export default function AnamneseScreen({ navigation }) {
     setDataAnamnese(newDataAnamnese)
   }
 
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  function updateBloodtyping(value) {
+    const newDataAnamnese = {
+        ...dataAnamnese
+    }
+    newDataAnamnese.tipagemsanguinea = value
+    setDataAnamnese(newDataAnamnese)
+  }
+
+  
+
 
   async function logar() {
     try {
