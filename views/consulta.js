@@ -47,7 +47,7 @@ export default function ConsultaScreen({ navigation }) {
         body: raw,
       };
       const resp = await fetch(
-        'http://172.21.17.100:3000/Consulta',
+        'https://api-pi-senac.azurewebsites.net/consulta',
         requestOptions
       );
       const bodyResp = await resp.json();

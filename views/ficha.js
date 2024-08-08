@@ -457,7 +457,7 @@ export default function AnamneseScreen({ navigation }) {
     setDataAnamnese(newDataAnamnese)
   }
 
-  async function logar() {
+  async function ficha() {
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
@@ -467,7 +467,7 @@ export default function AnamneseScreen({ navigation }) {
         headers: myHeaders,
         body: raw,
       };
-      const resp = await fetch('http://172.21.17.100:3000/anamnese', requestOptions);
+      const resp = await fetch('https://api-pi-senac.azurewebsites.net/anamnese', requestOptions)
       const bodyResp = await resp.json();
       const token = bodyResp.token;
       SecureStore.setItemAsync('bearer', token);
@@ -813,7 +813,12 @@ export default function AnamneseScreen({ navigation }) {
       />
       <Button
         style={styles.button}
-        title="Logar"
+        title="Salvar"
+        onPress={() => logar()}
+      />
+      <Button
+        style={styles.button}
+        title="Cancelar"
         onPress={() => logar()}
       />
     </ScrollView>

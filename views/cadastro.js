@@ -83,7 +83,7 @@ export default function CadastroScreen({ navigation }) {
                 body: raw,
             };
             const resp = await fetch(
-                'http://172.21.17.100:3000/Cadastro',
+                'https://api-pi-senac.azurewebsites.net/cadastro',
                 requestOptions
             );
             const bodyResp = await resp.json();
@@ -94,7 +94,9 @@ export default function CadastroScreen({ navigation }) {
             console.warn(error);
         }
     }
-
+      function navegarPara(destino) {
+        navigation.navigate(destino)
+      }
     return (
         <View style={styles.container}>
             <Image width={100} height={200} style={{ flex: 1, objectFit: 'contain' }} source={LogoSenac} />
@@ -165,7 +167,7 @@ export default function CadastroScreen({ navigation }) {
             <Button
                 style={styles.button}
                 title="Cadastrar"
-                onPress={() => Cadastrar()}
+                onPress={() => ("Cadastrar")}
             />
         </View>
     );

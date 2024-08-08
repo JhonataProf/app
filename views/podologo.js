@@ -101,7 +101,7 @@ export default function PodologoScreen({ navigation }) {
                 body: raw,
             };
             const resp = await fetch(
-                'http://172.21.17.100:3000/Podologo',
+                'https://api-pi-senac.azurewebsites.net/podologo',
                 requestOptions
             );
             const bodyResp = await resp.json();

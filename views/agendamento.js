@@ -65,7 +65,7 @@ export default function AgendamentoScreen({ navigation }) {
                 body: raw,
             };
             const resp = await fetch(
-                'http://172.21.17.100:3000/Agendamento',
+                'http://172.21.17.100:3000/agendamento',
                 requestOptions
             );
             const bodyResp = await resp.json();

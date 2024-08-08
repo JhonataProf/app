@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
         body: raw,
       };
       const resp = await fetch(
-        'http://172.21.17.100:3000/Home',
+        'https://api-pi-senac.azurewebsites.net/home',
         requestOptions
       );
       const bodyResp = await resp.json();
@@ -35,7 +35,9 @@ export default function HomeScreen({ navigation }) {
       console.warn(error);
     }
   }
-
+    function navegarPara(destino) {
+      navigation.navigate(destino)
+    }
   return (
     <View style={styles.container}>
       <Image
@@ -53,22 +55,22 @@ export default function HomeScreen({ navigation }) {
       <Button
         style={styles.button}
         title="Agendamentos"
-        onPress={() => inicio()}
+        onPress={() => navegarPara("Agendamento")}
       />
       <Button
         style={styles.button}
-        title="Paciente"
-        onPress={() => inicio()}
+        title="Cadastro Paciente"
+        onPress={() => navegarPara("Cadastro")}
       />
       <Button
         style={styles.button}
-        title="Perfil"
-        onPress={() => inicio()}
+        title="Confirmar Consulta"
+        onPress={() => navegarPara("Consulta")}
       />
       <Button
         style={styles.button}
-        title="Profissional"
-        onPress={() => inicio()}
+        title="Cadastro Profissional"
+        onPress={() => navegarPara("Podologo")}
       />
     </View>
   );
@@ -78,13 +80,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 370,
-    padding: 60,
+    padding: 100,
     flexDirection: 'column',
     alignItems: 'center',
   },
   title: {
     fontSize: 60,
-    marginBottom: 20,
+    marginBottom: 80,
   },
   button: {
     flex: 1,
