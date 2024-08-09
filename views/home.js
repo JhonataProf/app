@@ -35,9 +35,11 @@ export default function HomeScreen({ navigation }) {
       console.warn(error);
     }
   }
-    function navegarPara(destino) {
-      navigation.navigate(destino)
-    }
+
+  function navegarPara(destino) {
+    navigation.navigate(destino)
+  }
+
   return (
     <View style={styles.container}>
       <Image
@@ -47,31 +49,36 @@ export default function HomeScreen({ navigation }) {
         source={LogoSenac}
       />
       <Text style={styles.title}>Home</Text>
-      <Button
-        style={styles.button}
-        title="Início"
-        onPress={() => inicio()}
-      />
-      <Button
-        style={styles.button}
-        title="Agendamentos"
-        onPress={() => navegarPara("Agendamento")}
-      />
-      <Button
-        style={styles.button}
-        title="Cadastro Paciente"
-        onPress={() => navegarPara("Cadastro")}
-      />
-      <Button
-        style={styles.button}
-        title="Confirmar Consulta"
-        onPress={() => navegarPara("Consulta")}
-      />
-      <Button
-        style={styles.button}
-        title="Cadastro Profissional"
-        onPress={() => navegarPara("Podologo")}
-      />
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Início"
+          onPress={() => inicio()}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Agendamentos"
+          onPress={() => navegarPara("Agendamento")}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Cadastro Paciente"
+          onPress={() => navegarPara("Cadastro")}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Confirmar Consulta"
+          onPress={() => navegarPara("Consulta")}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Cadastro Profissional"
+          onPress={() => navegarPara("Podologo")}
+        />
+      </View>
     </View>
   );
 }
@@ -79,7 +86,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 370,
+    width: 400,
     padding: 100,
     flexDirection: 'column',
     alignItems: 'center',
@@ -88,10 +95,8 @@ const styles = StyleSheet.create({
     fontSize: 60,
     marginBottom: 80,
   },
-  button: {
-    flex: 1,
-    fontSize: 20,
-    width: '100%',
+  buttonContainer: {
+    width: '200%',
     marginVertical: 10,
   },
 });

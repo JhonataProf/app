@@ -1,8 +1,8 @@
 import LogoSenac from '../assets/senac-logo.png';
 import * as React from 'react';
-import { Button, Text, StyleSheet, TextInput, View, Image } from 'react-native';
+import { Text, StyleSheet, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { useNavigation } from '@react-navigation/native'; // Importe useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 export default function CadastroScreen({ navigation }) {
     
@@ -14,62 +14,13 @@ export default function CadastroScreen({ navigation }) {
         endereco: '',
         cpf: '',
         genero: ''
-    })
+    });
 
-    function updatePatient(value) {
-        const newDataCadastro = {
+    function updateField(field, value) {
+        setDataCadastro({
             ...dataCadastro,
-        };
-        newDataCadastro.paciente = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateEmail(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.email = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateDate(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.data = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateTelephone(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.telefone = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateAddress(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.endereco = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateCpf(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.cpf = value;
-        setDataCadastro(newDataCadastro);
-    }
-
-    function updateGender(value) {
-        const newDataCadastro = {
-            ...dataCadastro,
-        };
-        newDataCadastro.genero = value;
-        setDataCadastro(newDataCadastro);
+            [field]: value
+        });
     }
 
     async function Cadastrar() {
@@ -94,81 +45,70 @@ export default function CadastroScreen({ navigation }) {
             console.warn(error);
         }
     }
-      function navegarPara(destino) {
-        navigation.navigate(destino)
-      }
+
     return (
         <View style={styles.container}>
-            <Image width={100} height={200} style={{ flex: 1, objectFit: 'contain' }} source={LogoSenac} />
+            <Image width={100} height={200} style={styles.logo} source={LogoSenac} />
             <Text style={styles.title}>Cadastro</Text>
             <TextInput
-                value={dataCadastro.patient}
-                onChangeText={updatePatient}
+                value={dataCadastro.name}
+                onChangeText={(value) => updateField('name', value)}
                 style={styles.input}
                 placeholder='Nome do Paciente'
-                secureTextEntry={true}
+                placeholderTextColor="#000"
                 keyboardType='default'
-                extContentType='patient'
             />
             <TextInput
                 value={dataCadastro.email}
-                onChangeText={updateEmail}
+                onChangeText={(value) => updateField('email', value)}
                 style={styles.input}
                 placeholder='Email'
-                secureTextEntry={true}
-                keyboardType='default'
-                textContentType='email'
+                placeholderTextColor="#000"
+                keyboardType='email-address'
             />
             <TextInput
-                value={dataCadastro.date}
-                onChangeText={updateDate}
+                value={dataCadastro.datanascimento}
+                onChangeText={(value) => updateField('datanascimento', value)}
                 style={styles.input}
                 placeholder='Data de Nascimento'
-                secureTextEntry={true}
+                placeholderTextColor="#000"
                 keyboardType='default'
-                textContentType='date'
             />
             <TextInput
-                value={dataCadastro.telephone}
-                onChangeText={updateTelephone}
+                value={dataCadastro.telefone}
+                onChangeText={(value) => updateField('telefone', value)}
                 style={styles.input}
                 placeholder='Telefone'
-                secureTextEntry={true}
-                keyboardType='default'
-                textContentType='telephone'
+                placeholderTextColor="#000"
+                keyboardType='phone-pad'
             />
             <TextInput
-                value={dataCadastro.address}
-                onChangeText={updateAddress}
+                value={dataCadastro.endereco}
+                onChangeText={(value) => updateField('endereco', value)}
                 style={styles.input}
                 placeholder='Endereço'
-                secureTextEntry={true}
+                placeholderTextColor="#000"
                 keyboardType='default'
-                textContentType='address'
             />
             <TextInput
                 value={dataCadastro.cpf}
-                onChangeText={updateCpf}
+                onChangeText={(value) => updateField('cpf', value)}
                 style={styles.input}
-                placeholder='Cpf'
-                secureTextEntry={true}
-                keyboardType='default'
-                textContentType='cpf'
+                placeholder='CPF'
+                placeholderTextColor="#000"
+                keyboardType='numeric'
             />
             <TextInput
-                value={dataCadastro.password}
-                onChangeText={updateGender}
+                value={dataCadastro.genero}
+                onChangeText={(value) => updateField('genero', value)}
                 style={styles.input}
                 placeholder='Gênero'
-                secureTextEntry={true}
+                placeholderTextColor="#000"
                 keyboardType='default'
-                textContentType='gender'
             />
-            <Button
-                style={styles.button}
-                title="Cadastrar"
-                onPress={() => ("Cadastrar")}
-            />
+            <TouchableOpacity style={styles.button} onPress={Cadastrar}>
+                <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -176,30 +116,43 @@ export default function CadastroScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: 370,
-        padding: 60,
-        flexDirection: 'column',
+        padding: 20,
+        justifyContent: 'center',
         alignItems: 'center',
     },
+    logo: {
+        width: 200,
+        height: 100,
+        resizeMode: 'contain',
+        marginBottom: 50,
+    },
     title: {
-        fontSize: 60,
+        fontSize: 40,
+        marginBottom: 30,
     },
     input: {
-        flex: 1,
-        fontSize: 20,
+        fontSize: 18,
         width: '100%',
-        maxHeight: 50,
-        textAlign: 'center',
-        flexWrap: 'nowrap',
+        height: 50,
         borderColor: '#000',
-        borderRadius: 40,
+        borderRadius: 5,
         borderWidth: 1,
         marginBottom: 20,
+        paddingHorizontal: 15,
+        textAlign: 'center',
+        color: '#000'
     },
     button: {
-        flex: 1,
-        fontSize: 20,
-        width: 1300,
-        display: 'flex',
+        backgroundColor: '#007AFF',
+        paddingVertical: 15,
+        paddingHorizontal: 40,
+        marginTop: 20,
+        width: '100%',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 18,
     },
 });
